@@ -1,0 +1,67 @@
+repos:
+  # Repository of pre-commit hooks for general formatting and code cleanliness
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      # Hook to remove trailing whitespace from files
+      - id: trailing-whitespace
+      # Hook to ensure files end with a newline
+      - id: end-of-file-fixer
+      # Hook to check for accidentally added large files
+      - id: check-added-large-files
+
+  # Repository for isort, a tool that sorts Python imports automatically
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.13.2
+    hooks:
+      # Hook to enforce sorted imports in Python files
+      - id: isort
+
+  # Repository for Black, a popular Python code formatter
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      # Hook to run Black to format Python code to the PEP8 standard
+      - id: black
+
+  # Repository for Numpydoc, used for validating NumPy-style docstrings
+  - repo: https://github.com/numpy/numpydoc
+    rev: v1.6.0
+    hooks:
+      # Hook to validate the correctness of docstrings following the Numpy docstring style guide
+      - id: numpydoc-validation
+        # Exclude specific directories such as tests, docs, migrations, and project from this validation
+        exclude: (tests|docs|migrations|project)/.*
+
+  # Repository for Flake8, a Python code style checker
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.1.0
+    hooks:
+      # Hook to run Flake8 for linting Python code to detect style and logic errors
+      - id: flake8
+
+  # Repository for Bandit, a tool to find security issues in Python code
+  - repo: https://github.com/pycqa/bandit
+    rev: 1.7.4
+    hooks:
+      # Hook to run Bandit for detecting common security issues in Python code
+      - id: bandit
+        # Specify the configuration file to use ('pyproject.toml')
+        args: ['-c', 'pyproject.toml']
+        # Install additional dependencies, in this case, TOML support
+        additional_dependencies: ['.[toml]']
+
+  # Local repository for custom hooks
+  - repo: local
+    hooks:
+      # Custom hook to run Django's 'check' command to validate the project's configuration
+      - id: django-check
+        name: Run Django Check
+        # Command to run: Django's management command 'python manage.py check'
+        entry: python manage.py check
+        # Use the system's Python environment, not a separate virtualenv
+        language: system
+        # Filenames are not passed to this hook, as it runs across the whole project
+        pass_filenames: false
+        # Apply only to Python files
+        types: [python]

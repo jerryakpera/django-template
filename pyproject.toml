@@ -1,0 +1,75 @@
+[project]
+requires-python = ">=3.12"
+# Specifies that the project requires Python version 3.12 or higher.
+
+[tool.bandit]
+exclude_dirs = ["*/test/*", "*/tests/*"]
+# Bandit is a security linter for Python. Here, it is configured to exclude
+# directories named 'test' or 'tests' from security checks.
+tests = ["B201", "B301"]
+# Only run specific Bandit tests, which correspond to checks for particular
+# security issues (B201: Test for `assert` use, B301: Use of insecure `pickle`).
+skips = ["B101", "B601"]
+# Skip certain Bandit tests (B101: Use of assert detected, B601: Use of `eval`).
+
+[tool.coverage.report]
+fail_under = 100
+# The code coverage must be 100%, meaning the test suite must cover every line of code.
+omit = ["*/migrations/*"]
+# Exclude migrations from coverage reports, as they are auto-generated and not relevant for testing.
+show_missing = true
+# Display lines of code that are missing from the coverage report.
+skip_covered = true
+# Omit files that are already 100% covered from the report to reduce clutter.
+
+[tool.isort]
+profile = "black"
+# Configures isort to follow Black's formatting style for sorting imports.
+src_paths = ["core", "config"]
+# Specify the source directories for sorting imports (isort will only check these directories).
+
+[tool.flake8]
+ignore = []
+# No specific errors or warnings are ignored (this can be configured later as needed).
+select = [
+  "E",  # Select all errors and warnings as per the pycodestyle rules.
+  "W",  # Select warnings as per the pycodestyle rules.
+  "F",  # Select Pyflakes issues for detecting undefined names, imports, etc.
+  "UP",  # Select checks for outdated Python syntax (from `flake8-use-pathlib` plugin).
+  "S",  # Select security checks (from `flake8-bandit` plugin).
+  "B",  # Select Bugbear checks (from `flake8-bugbear`).
+  "SIM",  # Select Simplify checks (from `flake8-simplify` plugin).
+  "I",  # Select isort checks to ensure import order is followed.
+]
+# A list of specific error and warning types Flake8 should check for.
+src_paths = ["core", "config"]
+# Specify the source directories that should be linted by Flake8.
+
+[tool.numpydoc_validation]
+checks = [
+  "all",  # Report all checks except those explicitly disabled below.
+  "ES01", # Do not require an extended summary in docstrings.
+  "EX01", # Do not require examples in the docstrings.
+  "SA01", # Do not require a 'See Also' section in the docstrings.
+  "SS06", # Do not require the summary line to fit on a single line.
+]
+# Numpydoc configuration to validate NumPy-style docstrings but ignore some sections that aren't mandatory.
+
+exclude = [
+  '__init__$',  # Exclude `__init__` method from Numpydoc checks.
+  'apps$',      # Exclude files named 'apps.py' from Numpydoc checks.
+  'urls$',      # Exclude files named 'urls.py' from Numpydoc checks.
+  '.Meta$',     # Exclude Meta classes from Numpydoc checks.
+  '.clean$',    # Exclude `clean` methods (used in forms) from Numpydoc checks.
+  '\\.__repr__$', # Exclude `__repr__` methods from Numpydoc checks.
+  '\\.__str__$',  # Exclude `__str__` methods from Numpydoc checks.
+]
+# Exclude certain files and methods from Numpydoc validation to avoid irrelevant or redundant checks.
+
+override_SS05 = [
+  '^Process ',  # Allow docstrings to start with 'Process' despite SS05 (this rule requires docstrings to start with a verb).
+  '^Assess ',   # Allow docstrings to start with 'Assess'.
+  '^Access ',   # Allow docstrings to start with 'Access'.
+]
+# Override rule SS05, which enforces docstring summaries to start with a verb,
+# to allow certain starting words (e.g., 'Process', 'Assess', 'Access') in docstrings.
