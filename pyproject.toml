@@ -6,7 +6,7 @@ requires-python = ">=3.12"
 exclude_dirs = ["*/test/*", "*/tests/*"]
 # Bandit is a security linter for Python. Here, it is configured to exclude
 # directories named 'test' or 'tests' from security checks.
-tests = ["B201", "B301"]
+tests = ["B105", "B201", "B301"]
 # Only run specific Bandit tests, which correspond to checks for particular
 # security issues (B201: Test for `assert` use, B301: Use of insecure `pickle`).
 skips = ["B101", "B601"]
