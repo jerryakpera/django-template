@@ -17,12 +17,17 @@ This template provides a streamlined setup for quickly starting Django projects 
 
 2. **Install dependencies**:
    - Install development dependencies:
-     ```bash
+     ```sh
      pip install -r requirements-dev.txt
      ```
    - Install production dependencies:
-     ```bash
+     ```sh
      pip install -r requirements.txt
+     ```
+3. **Install precommit**:
+   - Install precommit to handle checks before commit
+     ```sh
+     pre-commit.ext install
      ```
 
 ## Dependency Management
@@ -140,4 +145,9 @@ This template is provided under the MIT License.
 ```
 
 This README should provide a clear guide to set up your Django projects efficiently, covering virtual environments, dependency management, project restructuring, and automated code checks.
+
+```
+
+```
+
 ```
