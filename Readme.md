@@ -1,7 +1,3 @@
-Here’s an updated version of the `README.md` for your Django project quickstart template, incorporating your notes:
-
----
-
 # Django Project Quickstart Template
 
 This template provides a streamlined setup for quickly starting Django projects with best practices for virtual environments, dependency management, and pre-commit hooks.
@@ -52,73 +48,6 @@ We use [pip-tools](https://pypi.org/project/pip-tools/) to handle dependencies e
 
 4. Development dependencies (such as `pip-tools`, linters, and formatters) are listed in `requirements-dev.txt`.
 
-## Django Project Setup
-
-1. **Create the Django project**:
-
-   ```bash
-   django-admin startproject core .
-   ```
-
-2. **Restructure the project**:
-   - Move all files from the `core` directory into a new `config` directory.
-   - Create a `settings` folder within the `config` directory and move `settings.py` into it.
-   - Rename `settings.py` to `base.py` and adjust the import paths in the following files:
-     - `manage.py`
-     - `wsgi.py`
-     - `asgi.py`
-     - `base.py`
-
-## Pre-commit Hooks
-
-We use [pre-commit](https://pypi.org/project/pre-commit/) to ensure code quality before commits. To set this up:
-
-1. Install pre-commit:
-
-   ```bash
-   pip install pre-commit==3.8.0
-   ```
-
-2. Create a `.pre-commit-config.yaml` file with hooks such as:
-
-   - Trailing whitespace removal
-   - End-of-file fixer
-   - Large file check
-   - Python code formatting and linting (isort, Black, Flake8)
-   - Security analysis with Bandit
-   - Django project checks
-
-3. Run the checks manually:
-
-   ```bash
-   pre-commit run -a
-   ```
-
-4. Add pre-commit configuration to the `pyproject.toml` file.
-
-5. Install the pre-commit hook to run automatically before every commit:
-   ```bash
-   pre-commit install
-   ```
-
-## Linting and Code Formatting
-
-- **Flake8**: Lints Python code for style and logic errors.
-- **Black**: Formats Python code according to PEP8.
-- **isort**: Sorts Python imports.
-
-Add the following to your `setup.cfg` to configure these tools:
-
-```cfg
-[flake8]
-max-line-length = 99
-exclude = **/migrations/*,venv
-extend-ignore = E203, W503, F403, F401
-
-[isort]
-profile = black
-```
-
 ## Summary of Pre-commit Checks
 
 Run pre-commit checks using:
@@ -141,13 +70,3 @@ This will check for:
 ## License
 
 This template is provided under the MIT License.
-
-```
-
-This README should provide a clear guide to set up your Django projects efficiently, covering virtual environments, dependency management, project restructuring, and automated code checks.
-
-```
-
-```
-
-```
