@@ -67,6 +67,12 @@ This will check for:
 7. **Bandit**: Checks for common security issues.
 8. **Django check**: Validates Django project configurations with `python manage.py check`.
 
+## Things not included in this Django Quickstart
+
+1. Authentication
+2. Frontend styling
+3. File storage
+
 ## License
 
 This template is provided under the MIT License.
